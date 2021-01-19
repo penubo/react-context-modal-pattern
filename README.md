@@ -1,4 +1,9 @@
-# New Project
+# Modal pattern in react
+
+Modal, Dialog and Toast like components always need internal states to render properly like `open`, `setOpen`
+However, What we actually needs for control modal is `openModal` and `closeModal` method.
+We can abstract Modal like component using context API and custom hook.
+By doing this, We can make our page component much clear and easy to understand
 
 > ✨ Bootstrapped with Create Snowpack App (CSA).
 
