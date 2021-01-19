@@ -1,20 +1,12 @@
-import { Dialog } from '@material-ui/core';
-import React, { useState } from 'react';
+import React from 'react';
+import { useHelloModal } from './useHelloModal';
 
 function CustomPage() {
-  const [open, setOpen] = useState<boolean>(false);
-  const handleClick = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const openHelloModal = useHelloModal();
+
   return (
     <div>
-      <button onClick={handleClick}>open modal</button>
-      <Dialog open={open} onClose={handleClose}>
-        <div>'hello world'</div>
-      </Dialog>
+      <button onClick={openHelloModal}>open modal</button>
     </div>
   );
 }
