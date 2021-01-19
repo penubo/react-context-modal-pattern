@@ -1,11 +1,19 @@
 import { Dialog } from '@material-ui/core';
-import React, { createContext, useContext, useState } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from 'react';
 
-// @ts-ignore
-const HelloModalContext = createContext();
+type Action = SetStateAction<boolean>;
 
-// @ts-ignore
-const HelloModalProvider = ({ children }) => {
+type ContextAction = Dispatch<Action>;
+
+const HelloModalContext = createContext<ContextAction | null>(null);
+
+const HelloModalProvider = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = useState<boolean>(false);
   const handleClose = () => {
     setOpen(false);
@@ -24,11 +32,10 @@ const HelloModalProvider = ({ children }) => {
 
 const useHelloModal = () => {
   const setOpen = useContext(HelloModalContext);
-  if (setOpen === undefined) {
+  if (setOpen === null) {
     throw new Error('useHelloModal must be used in HelloModalProvider');
   }
   const openHelloModal = () => {
-    // @ts-ignore
     setOpen(true);
   };
   return openHelloModal;
